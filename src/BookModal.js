@@ -16,7 +16,6 @@ class BookModal extends Component {
 	} 
 
 	render(){
-
 		let bookSelected = this.props.bookClick
 		let imageObj = bookSelected.imageLinks
 		let thumbnail = ''
@@ -27,18 +26,25 @@ class BookModal extends Component {
 		}
 
 		return (			
-			<div className="book-modal" style={{display: `${this.props.display}`}}>
-				<h2>{bookSelected.title}</h2>
-				<p>{bookSelected.subtitle}</p>
-				<div className="row">
-					<div className="left-column">
-						<div className="book-cover" style={{width: 128, height:192, backgroundImage: `url(${thumbnail})` }}></div>
+			<div className="book-modal-total">
+				<div className="book-modal" style={{display: `${this.props.display}`}}>
+					<h2>{bookSelected.title}</h2>
+					<p>{bookSelected.subtitle}</p>
+					<div className="row">
+						<div className="left-column">
+							<div className="book-cover" style={{width: 128, height:192, backgroundImage: `url(${thumbnail})` }}></div>
+						</div>
+						<div className="right-column">
+							<p>Author(s): {this.authorCompile()}</p>
+							<p># of Pages: {bookSelected.pageCount}</p>
+							<p>Publisher: {bookSelected.publisher}</p>
+							<p>Date Published: {bookSelected.publishedDate}</p>
+							<a href={bookSelected.infoLink} target="_blank">More Information</a>
+						</div>
 					</div>
-					<div className="right-column">
-						<p>Author(s): {this.authorCompile()}</p>
-						<p></p>
-					</div>
+					<div className="x-button" onClick={() => this.props.closeModal()}>X</div>
 				</div>
+				<div className="book-modal-overlay" style={{display: `${this.props.display}`}}></div>
 			</div>
 		)
 	}

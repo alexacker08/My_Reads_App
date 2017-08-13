@@ -9,9 +9,10 @@ class BooksApp extends React.Component {
   
   constructor(){
     super();
-    this.state = {books: [], select: '', modalDisplay:'none'}
+    this.state = {
+      books: []
+    }
     this.updateBookStatus.bind(this)
-    this.updateBookSelect.bind(this)
   }  
 
   //Handles updating books both within the Search and Main shelf page
@@ -22,17 +23,6 @@ class BooksApp extends React.Component {
         books: prevState.books.filter(b => b.id !== book.id).concat([book])
       }))
     }).catch(e => alert(`${e}. There is an issue with with the API. Please try again.`))
-  }
-
-  updateBookSelect = (book) => {
-    this.setState({
-      select: book,
-      modalDisplay:'block'
-    })
-  }
-
-  closeBookModal = () => {
-    this.setState({modalDisplay:'none'})
   }
 
   //Conducts initial API lookup of Books on current active shelf
@@ -50,17 +40,13 @@ class BooksApp extends React.Component {
             add={(book,shelf) => {
               this.updateBookStatus(book,shelf) 
             }} 
-            currentBooks={this.state.books}
-            modalSelect={this.updateBookSelect}
+            currentBooks={this.state.books}          
           />
         )}/>
         <Route exact path="/" render={() => (
           <ListBooks 
             books={this.state.books}
             update={this.updateBookStatus}
-            modalSelect={this.updateBookSelect}
-            bookSelect={this.state.select}
-            modalDisplay={this.state.modalDisplay}
           />
         )}/>        
       </div>

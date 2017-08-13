@@ -166,6 +166,17 @@ body, .app {
 .book-cover {
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   background: #eee;
+  cursor: pointer;
+  transition: transform .2s linear;
+  -webkit-transition: -webkit-transform .2s linear;
+  -moz-transition: -moz-transform .2s linear;
+  -o-transition: -o-transform .2s linear;
+}
+.book-cover:hover {
+  transform: scale(1.06);
+  -webkit-transform: scale(1.06);
+  -moz-transform: scale(1.06);
+  -o-transform: scale(1.06);
 }
 .book-cover-title {
   padding: 20px 10px 0;
@@ -176,7 +187,7 @@ body, .app {
 /* book cover */
 
 .book-modal {
-  position: absolute;
+  position: fixed;
   width: 600px;
   background-color: #CCC;
   min-height: 400px;
@@ -206,6 +217,10 @@ body, .app {
   float: left;
   width: 60%;
 }
+.book-modal .right-column p {
+  margin-top: 0px;
+}
+
 .book-modal .book-cover {
   margin-left: auto;
   margin-right: auto;
@@ -215,5 +230,23 @@ body, .app {
 }
 .book-modal h2 + p {
   text-align: center;
+}
+.book-modal .x-button {
+  position: absolute;
+  font-size: 30px;
+  color: #000;
+  top: 0px;
+  right: 10px;
+  cursor: pointer;
+}
+.book-modal-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 9999;
+  display: none;
+  background: rgba(0,0,0,0.8);
 }
 

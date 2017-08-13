@@ -47,7 +47,6 @@ class ListBooks extends Component {
             <div className="open-search">
               <Link to="/search">Add a Book</Link>
             </div>
-            <BookModal bookClick={this.props.bookSelect} display={this.props.modalDisplay}/>
           </div>
 		)
 	}
@@ -60,7 +59,7 @@ class BookShelf extends Component {
       <div className="bookshelf">
         <h2 className="bookshelf-title">{this.props.title}</h2>
         <div className="bookshelf-books">
-          <BookDisplay list={this.props.list} update={this.props.update} modalUpdate={this.props.modalUpdate} />
+          <BookDisplay list={this.props.list} update={this.props.update} />
         </div>
       </div>
     )

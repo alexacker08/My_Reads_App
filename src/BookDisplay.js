@@ -5,13 +5,20 @@ import * as BooksAPI from './BooksAPI'
 class BookDisplay extends Component {
 
 	render(){
+
+		let modalStart = typeof this.props.modalUpdate !== 'undefined' ? this.props.modalUpdate : () => {}
+
 		return (
           <ol className="books-grid">
             {this.props.list.map((book) => {
             return <li key={book.id}>
-              <div className="book" onClick={() => this.props.modalUpdate(book)}>
+              <div className="book">
                 <div className="book-top">
-                  <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
+                  <div className="book-cover" 
+                  	onClick={                
+              			() => modalStart(book)
+                  	} 
+                  	style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
                   <div className="book-shelf-changer">
                     <SelectArea status={book.shelf} update={this.props.update} book={book} />
                   </div>

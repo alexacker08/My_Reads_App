@@ -10,10 +10,27 @@ class SearchBooks extends Component {
 
 	constructor(props){
 		super(props);
-	    this.state = {query: []}
+	    this.state = {
+	    	query: [],
+	      	select: '',
+      		modalDisplay:'none'
+	    }
 	    this.queryChange.bind(this)
 	    this.handleChange.bind(this)
+	    this.updateBookSelect.bind(this)
+	    this.closeBookModal.bind(this)
 	}
+
+	updateBookSelect = (book) => {
+		this.setState({
+		  select: book,
+		  modalDisplay:'block'
+		})
+	}
+
+	closeBookModal = () => {
+		this.setState({modalDisplay:'none'})
+	}	
 
 	//Implementing Query change functionality with Debounce to minimize the API calls
 	queryChange = debounce((searchTerm) => {
@@ -37,7 +54,7 @@ class SearchBooks extends Component {
 
 	//Passing updating book status to select children
 	handleChange = (book,bookStatus) => {
-	this.props.add(book,bookStatus)
+		this.props.add(book,bookStatus)
 	}	
 
 	render(){
@@ -53,10 +70,10 @@ class SearchBooks extends Component {
 	        </div>
 	        <div className="search-books-results">
 	          {this.state.query.length > 0 && (
-	            <BookDisplay list={this.state.query} update={this.handleChange} />
+	            <BookDisplay list={this.state.query} update={this.handleChange} modalUpdate={this.updateBookSelect} />
 	          )}
 	        </div>
-	        <BookModal />
+	        <BookModal bookClick={this.state.select} display={this.state.modalDisplay} closeModal={this.closeBookModal}/>
 	      </div>			
 		)
 	}	
