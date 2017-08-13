@@ -13,6 +13,23 @@ class BooksApp extends React.Component {
     this.updateBookStatus.bind(this)
   }  
 
+  //Handles updating books both within the Search and Main shelf page
+  updateBookStatus = (book,shelf) => {
+    book.shelf = shelf
+    BooksAPI.update(book,shelf).then((res) => {
+      this.setState((prevState) => ({
+        books: prevState.books.filter(b => b.id !== book.id).concat([book])
+      }))
+    }).catch(e => alert(`${e}. There is an issue with with the API. Please try again.`))
+  }
+
+  //Conducts initial API lookup of Books on current active shelf
+  componentDidMount(){
+    BooksAPI.getAll().then((books) => {
+      this.setState({books})
+    }).catch(e => alert(`${e}. There is an issue with with the API. Please try again.`))
+  }
+
   render() {
     return (
       <div className="app">        
