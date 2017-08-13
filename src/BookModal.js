@@ -16,6 +16,9 @@ class BookModal extends Component {
 	} 
 
 	render(){
+		
+		//Errors prduced with undefined variable thus workaround to produce empty string during initial DOM loads.
+		//There is a better way to implement this 
 		let bookSelected = this.props.bookClick
 		let imageObj = bookSelected.imageLinks
 		let thumbnail = ''
@@ -44,7 +47,7 @@ class BookModal extends Component {
 					</div>
 					<div className="x-button" onClick={() => this.props.closeModal()}>X</div>
 				</div>
-				<div className="book-modal-overlay" style={{display: `${this.props.display}`}}></div>
+				<div className="book-modal-overlay" onClick={() => this.props.closeModal()} style={{display: `${this.props.display}`}}></div>
 			</div>
 		)
 	}

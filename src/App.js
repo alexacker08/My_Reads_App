@@ -13,7 +13,8 @@ class BooksApp extends React.Component {
       books: []
     }
     this.updateBookStatus.bind(this)
-  }  
+  }
+
 
   //Handles updating books both within the Search and Main shelf page
   updateBookStatus = (book,shelf) => {

@@ -15,8 +15,9 @@ class ListBooks extends Component {
 		  return obj.shelf === param
 		})
 	}
-
+	
 	render(){
+
 		return (
           <div className="list-books">
             <div className="list-books-title">
@@ -28,19 +29,16 @@ class ListBooks extends Component {
                 	list={this.bookFilter('currentlyReading')} 
                 	update={this.props.update} 
                 	title={'Currently Reading'}
-                	modalUpdate={this.props.modalSelect}
                 />
                 <BookShelf 
                 	list={this.bookFilter('wantToRead')} 
                 	update={this.props.update} 
                 	title={'Want to read'}
-                	modalUpdate={this.props.modalSelect}
                 />
                 <BookShelf 
                 	list={this.bookFilter('read')} 
                 	update={this.props.update} 
                 	title={'Have Read'}
-                	modalUpdate={this.props.modalSelect}
                 />
               </div>
             </div>
