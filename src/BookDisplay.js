@@ -3,17 +3,13 @@ import * as BooksAPI from './BooksAPI'
 
 //Displays the individual book along with its Select componenet
 class BookDisplay extends Component {
-	getBook = (id) => {
-		BooksAPI.get(id).then((book) => {
-		})
-	}
 
 	render(){
 		return (
           <ol className="books-grid">
             {this.props.list.map((book) => {
             return <li key={book.id}>
-              <div className="book" onClick={() => this.getBook(book.id)}>
+              <div className="book" onClick={() => this.props.modalUpdate(book)}>
                 <div className="book-top">
                   <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
                   <div className="book-shelf-changer">

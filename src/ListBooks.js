@@ -1,20 +1,7 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import BookDisplay from './BookDisplay'
-
-//Could implement this as a normal "Function" however like the consistency of utilizing the extends method.
-class BookShelf extends Component {
-  render(){
-    return (
-      <div className="bookshelf">
-        <h2 className="bookshelf-title">{this.props.title}</h2>
-        <div className="bookshelf-books">
-          <BookDisplay list={this.props.list} update={this.props.update} />
-        </div>
-      </div>
-    )
-  }
-}
+import BookModal from './BookModal'
 
 class ListBooks extends Component {
 	constructor(props){
@@ -37,17 +24,47 @@ class ListBooks extends Component {
             </div>  
             <div className="list-books-content">
               <div>
-                <BookShelf list={this.bookFilter('currentlyReading')} update={this.props.update} title={'Currently Reading'} />
-                <BookShelf list={this.bookFilter('wantToRead')} update={this.props.update} title={'Want to read'}/>
-                <BookShelf list={this.bookFilter('read')} update={this.props.update} title={'Have Read'}/>
+                <BookShelf 
+                	list={this.bookFilter('currentlyReading')} 
+                	update={this.props.update} 
+                	title={'Currently Reading'}
+                	modalUpdate={this.props.modalSelect}
+                />
+                <BookShelf 
+                	list={this.bookFilter('wantToRead')} 
+                	update={this.props.update} 
+                	title={'Want to read'}
+                	modalUpdate={this.props.modalSelect}
+                />
+                <BookShelf 
+                	list={this.bookFilter('read')} 
+                	update={this.props.update} 
+                	title={'Have Read'}
+                	modalUpdate={this.props.modalSelect}
+                />
               </div>
             </div>
             <div className="open-search">
               <Link to="/search">Add a Book</Link>
             </div>
+            <BookModal bookClick={this.props.bookSelect} display={this.props.modalDisplay}/>
           </div>
 		)
 	}
+}
+
+//Could implement this as a normal "Function" however like the consistency of utilizing the extends method.
+class BookShelf extends Component {
+  render(){
+    return (
+      <div className="bookshelf">
+        <h2 className="bookshelf-title">{this.props.title}</h2>
+        <div className="bookshelf-books">
+          <BookDisplay list={this.props.list} update={this.props.update} modalUpdate={this.props.modalUpdate} />
+        </div>
+      </div>
+    )
+  }
 }
 
 export default ListBooks

@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import BookDisplay from './BookDisplay'
 import * as BooksAPI from './BooksAPI'
 import debounce from 'debounce'
+import BookModal from './BookModal'
 
 
 class SearchBooks extends Component {
@@ -55,6 +56,7 @@ class SearchBooks extends Component {
 	            <BookDisplay list={this.state.query} update={this.handleChange} />
 	          )}
 	        </div>
+	        <BookModal />
 	      </div>			
 		)
 	}	
