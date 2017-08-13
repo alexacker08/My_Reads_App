@@ -18,9 +18,6 @@ class SearchBooks extends Component {
 	queryChange = debounce((searchTerm) => {
 	BooksAPI.search(searchTerm, 100).then((books) => {        
 	  
-	  const bookList = new Set(books);
-	  console.log(bookList);
-
 	  //Map out new search results based on the state of the 
 	  const newBook = books.map((obj) => {
 	    let currentBook = this.props.currentBooks.filter((currBook) => currBook.id === obj.id)
