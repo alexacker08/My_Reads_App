@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 
 class BookModal extends Component {
-	
+
 	authorCompile = () => {
 		const authorList = this.props.bookClick.authors
 		if(Array.isArray(authorList)){
@@ -13,12 +13,12 @@ class BookModal extends Component {
 		} else {
 			return 'Unknown'
 		}
-	} 
+	}
 
 	render(){
-		
+
 		//Errors prduced with undefined variable thus workaround to produce empty string during initial DOM loads.
-		//There is a better way to implement this 
+		//There is a better way to implement this
 		let bookSelected = this.props.bookClick
 		let imageObj = bookSelected.imageLinks
 		let thumbnail = ''
@@ -28,7 +28,7 @@ class BookModal extends Component {
 			thumbnail = imageObj.thumbnail
 		}
 
-		return (			
+		return (
 			<div className="book-modal-total">
 				<div className="book-modal" style={{display: `${this.props.display}`}}>
 					<h2>{bookSelected.title}</h2>

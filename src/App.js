@@ -6,7 +6,7 @@ import ListBooks from './ListBooks'
 import './App.css'
 
 class BooksApp extends React.Component {
-  
+
   constructor(){
     super();
     this.state = {
@@ -29,27 +29,27 @@ class BooksApp extends React.Component {
   //Conducts initial API lookup of Books on current active shelf
   componentDidMount(){
     BooksAPI.getAll().then((books) => {
-      this.setState({books}) 
+      this.setState({books})
     }).catch(e => alert(`${e}. There is an issue with with the API. Please try again.`))
   }
 
   render() {
     return (
-      <div className="app">        
+      <div className="app">
         <Route exact path="/search" render={() => (
-          <SearchBooks 
+          <SearchBooks
             add={(book,shelf) => {
-              this.updateBookStatus(book,shelf) 
-            }} 
-            currentBooks={this.state.books}          
+              this.updateBookStatus(book,shelf)
+            }}
+            currentBooks={this.state.books}
           />
         )}/>
         <Route exact path="/" render={() => (
-          <ListBooks 
+          <ListBooks
             books={this.state.books}
             update={this.updateBookStatus}
           />
-        )}/>        
+        )}/>
       </div>
     )
   }

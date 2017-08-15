@@ -14,10 +14,10 @@ class BookDisplay extends Component {
             return <li key={book.id}>
               <div className="book">
                 <div className="book-top">
-                  <div className="book-cover" 
-                  	onClick={                
+                  <div className="book-cover"
+                  	onClick={
               			() => modalStart(book)
-                  	} 
+                  	}
                   	style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
                   <div className="book-shelf-changer">
                     <SelectArea status={book.shelf} update={this.props.update} book={book} />
@@ -29,12 +29,12 @@ class BookDisplay extends Component {
             </li>
             })
             }
-          </ol>	
+          </ol>
 		)
 	}
 }
 
-//Select component that handles shelf updates. 
+//Select component that handles shelf updates.
 class SelectArea extends Component {
 	constructor(props){
 		super(props);
@@ -54,8 +54,8 @@ class SelectArea extends Component {
 	          <option value="currentlyReading">Currently Reading</option>
 	          <option value="wantToRead">Want to Read</option>
 	          <option value="read">Read</option>
-	          <option value="none">None</option>  
-	        </select>		
+	          <option value="none">None</option>
+	        </select>
 		)
 	}
 }

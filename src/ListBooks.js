@@ -9,7 +9,7 @@ class ListBooks extends Component {
 		this.bookFilter.bind(this)
 	}
 
-	//Only allow books in that meet the criteria of that particular shelf. 
+	//Only allow books in that meet the criteria of that particular shelf.
 	bookFilter = (param) => {
 		return this.props.books.filter((obj) => {
 		  return obj.shelf === param
@@ -22,22 +22,22 @@ class ListBooks extends Component {
           <div className="list-books">
             <div className="list-books-title">
               <h1>My Reading Application</h1>
-            </div>  
+            </div>
             <div className="list-books-content">
               <div>
-                <BookShelf 
-                	list={this.bookFilter('currentlyReading')} 
-                	update={this.props.update} 
+                <BookShelf
+                	list={this.bookFilter('currentlyReading')}
+                	update={this.props.update}
                 	title={'Currently Reading'}
                 />
-                <BookShelf 
-                	list={this.bookFilter('wantToRead')} 
-                	update={this.props.update} 
+                <BookShelf
+                	list={this.bookFilter('wantToRead')}
+                	update={this.props.update}
                 	title={'Want to read'}
                 />
-                <BookShelf 
-                	list={this.bookFilter('read')} 
-                	update={this.props.update} 
+                <BookShelf
+                	list={this.bookFilter('read')}
+                	update={this.props.update}
                 	title={'Have Read'}
                 />
               </div>
