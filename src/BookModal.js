@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 
 class BookModal extends Component {
 
+	//Helps to compile the Authors array within the Books Callback
 	authorCompile = () => {
 		const authorList = this.props.bookClick.authors
 		if(Array.isArray(authorList)){
@@ -17,8 +18,7 @@ class BookModal extends Component {
 
 	render(){
 
-		//Errors prduced with undefined variable thus workaround to produce empty string during initial DOM loads.
-		//There is a better way to implement this
+		//Errors produced with undefined variable thus workaround to produce empty string during initial DOM loads.
 		let bookSelected = this.props.bookClick
 		let imageObj = bookSelected.imageLinks
 		let thumbnail = ''

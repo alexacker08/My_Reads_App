@@ -4,10 +4,10 @@ import BookDisplay from './BookDisplay'
 import * as BooksAPI from './BooksAPI'
 import debounce from 'debounce'
 import BookModal from './BookModal'
+import LeftNav from './LeftNav.js'
 
 
 class SearchBooks extends Component {
-
 	constructor(props){
 		super(props);
 	    this.state = {
@@ -21,6 +21,7 @@ class SearchBooks extends Component {
 	    this.closeBookModal.bind(this)
 	}
 
+	//Updates the current book selected for the modal
 	updateBookSelect = (book) => {
 		this.setState({
 		  select: book,
@@ -28,16 +29,24 @@ class SearchBooks extends Component {
 		})
 	}
 
+	//Closes the book modal
 	closeBookModal = () => {
 		this.setState({modalDisplay:'none'})
+	}
+	noSearchesFound = () => {
+		alert('Please search something else');
 	}
 
 	//Implementing Query change functionality with Debounce to minimize the API calls
 	queryChange = debounce((searchTerm) => {
 	BooksAPI.search(searchTerm, 100).then((books) => {
-
+	  const searchedBooks = Array.isArray(books) ? books : [];
+	  if(searchedBooks.length === 0){
+	  	this.noSearchesFound()
+	  	return false;
+	  }
 	  //Map out new search results based on the state of the
-	  const newBook = books.map((obj) => {
+	  const newBook = searchedBooks.map((obj) => {
 	    let currentBook = this.props.currentBooks.filter((currBook) => currBook.id === obj.id)
 	    let updatedObj = obj;
 	    if(currentBook.length > 0){
@@ -60,20 +69,23 @@ class SearchBooks extends Component {
 	render(){
 		return (
 	      <div className="search-books">
-	        <div className="search-books-bar">
-	          <Link to="/" className="close-search">Close</Link>
-	          <div className="search-books-input-wrapper">
-	            <input type="text" placeholder="Search by title or author"
-	              onChange={(e) => this.queryChange(e.target.value)}
-	            />
-	          </div>
+	        <LeftNav />
+	        <div className="search-right">
+		        <div className="search-books-bar">
+		          <Link to="/" className="close-search">Close</Link>
+		          <div className="search-books-input-wrapper">
+		            <input type="text" placeholder="Search by title or author"
+		              onChange={(e) => this.queryChange(e.target.value)}
+		            />
+		          </div>
+		        </div>
+		        <div className="search-books-results">
+		          {this.state.query.length > 0 && (
+		            <BookDisplay list={this.state.query} update={this.handleChange} modalUpdate={this.updateBookSelect} />
+		          )}
+		        </div>
+	        	<BookModal bookClick={this.state.select} display={this.state.modalDisplay} closeModal={this.closeBookModal}/>
 	        </div>
-	        <div className="search-books-results">
-	          {this.state.query.length > 0 && (
-	            <BookDisplay list={this.state.query} update={this.handleChange} modalUpdate={this.updateBookSelect} />
-	          )}
-	        </div>
-	        <BookModal bookClick={this.state.select} display={this.state.modalDisplay} closeModal={this.closeBookModal}/>
 	      </div>
 		)
 	}

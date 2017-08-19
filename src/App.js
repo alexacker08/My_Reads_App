@@ -36,6 +36,9 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div className="app">
+        <div className="list-books-title">
+          <h1>My Reading Application</h1>
+        </div>
         <Route exact path="/search" render={() => (
           <SearchBooks
             add={(book,shelf) => {

@@ -6,8 +6,8 @@ class BookDisplay extends Component {
 
 	render(){
 
+		//Work around for dealing with initially undefined value on modalUpdate
 		let modalStart = typeof this.props.modalUpdate !== 'undefined' ? this.props.modalUpdate : () => {}
-
 		return (
           <ol className="books-grid">
             {this.props.list.map((book) => {
@@ -15,9 +15,8 @@ class BookDisplay extends Component {
               <div className="book">
                 <div className="book-top">
                   <div className="book-cover"
-                  	onClick={
-              			() => modalStart(book)
-                  	}
+                  	//Opens the modal on the particular book
+                  	onClick={() => modalStart(book)}
                   	style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
                   <div className="book-shelf-changer">
                     <SelectArea status={book.shelf} update={this.props.update} book={book} />

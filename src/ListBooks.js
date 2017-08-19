@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import BookDisplay from './BookDisplay'
 import BookModal from './BookModal'
+import LeftNav from './LeftNav'
 
 class ListBooks extends Component {
 	constructor(props){
@@ -15,40 +16,37 @@ class ListBooks extends Component {
 		  return obj.shelf === param
 		})
 	}
-
 	render(){
-
 		return (
-          <div className="list-books">
-            <div className="list-books-title">
-              <h1>My Reading Application</h1>
-            </div>
-            <div className="list-books-content">
-              <div>
-                <BookShelf
-                	list={this.bookFilter('currentlyReading')}
-                	update={this.props.update}
-                	title={'Currently Reading'}
-                />
-                <BookShelf
-                	list={this.bookFilter('wantToRead')}
-                	update={this.props.update}
-                	title={'Want to read'}
-                />
-                <BookShelf
-                	list={this.bookFilter('read')}
-                	update={this.props.update}
-                	title={'Have Read'}
-                />
-              </div>
-            </div>
-            <div className="open-search">
-              <Link to="/search">Add a Book</Link>
-            </div>
+      <div className="list-books">
+        <LeftNav />
+        <div className="list-books-content">
+          <div>
+            <BookShelf
+            	list={this.bookFilter('currentlyReading')}
+            	update={this.props.update}
+            	title={'Currently Reading'}
+            />
+            <BookShelf
+            	list={this.bookFilter('wantToRead')}
+            	update={this.props.update}
+            	title={'Want to read'}
+            />
+            <BookShelf
+            	list={this.bookFilter('read')}
+            	update={this.props.update}
+            	title={'Have Read'}
+            />
           </div>
+        </div>
+        <div className="open-search">
+          <Link to="/search">Add a Book</Link>
+        </div>
+      </div>
 		)
 	}
 }
+
 
 //Could implement this as a normal "Function" however like the consistency of utilizing the extends method.
 class BookShelf extends Component {

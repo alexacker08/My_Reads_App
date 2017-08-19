@@ -1,48 +1,102 @@
 html, body, .root {
   height: 100%;
 }
+*,*:after,*:before {
+  box-sizing: border-box;
+}
+
 body {
   line-height: 1.5;
 }
 body, .app {
-  background: white;
+  background-color: #F4F4F4;
+}
+a {
+  text-decoration: none;
 }
 
 /* main page */
 
+.list-books {
+  position: relative;
+  background-color: #F4F4F4;
+}
+.list-books:after {
+  clear: both;
+  display: table;
+  content: '';
+}
 .list-books-title {
-  padding: 10px 0;
-  background: #2e7c31;
+  padding: 20px 0;
+  background: url(https://image.flaticon.com/icons/svg/183/183327.svg) no-repeat;
+  background-position: 99%;
+  background-size: 57px;
+  background-color: #39393A;
   text-align: center;
+  position: fixed;
+  width: 100%;
+  z-index: 999999;
 }
 .list-books-title h1 {
-  font-weight: 400;
+  font-weight: 300;
   margin: 0;
   color: white;
+  text-align: left;
+  padding-left: 30px;
+  font-size: 24px;
 }
-
+.list-books-left-nav {
+  position: fixed;
+  width: 330px;
+  padding: 170px 0px 0px;
+}
+.list-books-left-nav .shelf-button {
+  width: 100%;
+  margin-bottom: 30px;
+  text-align: right;
+}
+.list-books-left-nav a {
+  width: 80%;
+  padding: 15px 30px 15px 15px;
+  color: rgba(0,0,0,0.87);
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.list-books-left-nav .shelf-button:nth-of-type(1) a {
+  background: url(https://image.flaticon.com/icons/svg/179/179512.svg) no-repeat;
+  background-color: rgba(0,0,0,.08);
+  background-size: 40px;
+  background-position: 15px 8px;
+}
+.list-books-left-nav .shelf-button:nth-of-type(2) a {
+  background: url(https://image.flaticon.com/icons/svg/164/164995.svg) no-repeat;
+  background-color: rgba(0,0,0,.08);
+  background-size: 40px;
+  background-position: 13px 10px;
+}
 .list-books-content {
-  padding: 0 0 80px;
-  flex: 1;
+  float: right;
+  padding: 170px 0 80px;
+  width: 75%;
 }
-
 .bookshelf {
   padding: 0 10px 20px;
 }
-
 @media (min-width: 600px) {
   .bookshelf {
     padding: 0 20px 40px;
   }
 }
-
 .bookshelf-title {
   border-bottom: 1px solid #dedede;
+  margin-top: 0px;
 }
 .bookshelf-books {
   text-align: center;
 }
-
 .open-search {
   position: fixed;
   right: 25px;
@@ -64,10 +118,16 @@ body, .app {
 
 /* search page */
 
+.search-right {
+  width: 75%;
+  float: right;
+  position: relative;
+}
+
 .search-books-bar {
-  position: fixed;
-  width: 100%;
-  top: 0;
+  width: 90%;
+  position: absolute;
+  top: 170px;
   left: 0;
   z-index: 5;
   display: flex;
@@ -100,7 +160,7 @@ body, .app {
 }
 
 .search-books-results {
-  padding: 80px 10px 20px;
+  padding: 270px 10px 20px;
 }
 
 /* books grid */
@@ -109,16 +169,14 @@ body, .app {
   list-style-type: none;
   padding: 0;
   margin: 0;
-
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
 }
 .books-grid li {
   padding: 10px 15px;
   text-align: left;
 }
-
 .book {
   width: 140px;
 }
