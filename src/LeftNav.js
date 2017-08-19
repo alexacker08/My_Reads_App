@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 
+//Left nav component that is utilized across both the search and shelf pages
 class LeftNav extends Component {
   render(){
     return (

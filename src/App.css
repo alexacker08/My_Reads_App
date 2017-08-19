@@ -14,6 +14,11 @@ body, .app {
 a {
   text-decoration: none;
 }
+ul {
+  list-style: none;
+  padding-right: 0px;
+  margin-right: 0px;
+}
 
 /* main page */
 
@@ -59,12 +64,15 @@ a {
   width: 80%;
   padding: 15px 30px 15px 15px;
   color: rgba(0,0,0,0.87);
+  border: 2px solid rgba(0,0,0,.08);
   display: block;
   margin-left: auto;
   margin-right: auto;
   border-radius: 4px;
   cursor: pointer;
+  transition: background-color .2s linear;
 }
+
 .list-books-left-nav .shelf-button:nth-of-type(1) a {
   background: url(https://image.flaticon.com/icons/svg/179/179512.svg) no-repeat;
   background-color: rgba(0,0,0,.08);
@@ -77,11 +85,72 @@ a {
   background-size: 40px;
   background-position: 13px 10px;
 }
+.list-books-left-nav .shelf-button a:hover {
+  background-color: #FFF;
+}
+
 .list-books-content {
   float: right;
-  padding: 170px 0 80px;
+  padding: 155px 0 80px;
   width: 75%;
 }
+.options-row {
+  padding-bottom: 15px;
+}
+.options-row ul {
+  padding-left: 20px;
+}
+.options-row ul:after {
+  clear: both;
+  display: table;
+  content: '';
+}
+.options-row ul li.filter p {
+  padding: 7px 13px;
+  border-radius: 3px;
+  background-color: #ccc;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  width: 70px;
+  text-align: center;
+  margin-bottom: 13px;
+  cursor: pointer;
+}
+.options-row ul ul {
+  padding-left: 0px;
+  display: none;
+}
+.options-row ul ul.active {
+  display: block;
+}
+.options-row ul ul li {
+  padding: 6px 8px;
+  background-color: #ccc;
+  border: 2px solid #ccc;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all .2s linear;
+}
+.options-row ul ul li.active {
+  background-color: #0275d8;
+  border-color: #0275d8;
+  color: #fff;
+}
+.options-row ul ul li:hover {
+  background-color: #0275d8;
+  border-color: #0275d8;
+  color: #fff;
+}
+.options-row li {
+  display: inline-block;
+  float:left;
+  color: #000;
+  margin-left: 30px;
+}
+.options-row li:nth-of-type(1){
+  margin-left: 0px;
+}
+
 .bookshelf {
   padding: 0 10px 20px;
 }

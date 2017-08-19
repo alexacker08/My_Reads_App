@@ -40,6 +40,8 @@ class SearchBooks extends Component {
 	//Implementing Query change functionality with Debounce to minimize the API calls
 	queryChange = debounce((searchTerm) => {
 	BooksAPI.search(searchTerm, 100).then((books) => {
+
+	  //Checks to see if the callback is an array and if not, creates an empty one followed by an alert to have the user search again.
 	  const searchedBooks = Array.isArray(books) ? books : [];
 	  if(searchedBooks.length === 0){
 	  	this.noSearchesFound()
