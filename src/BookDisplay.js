@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import * as BooksAPI from './BooksAPI'
 
 //Displays the individual book along with its Select componenet
 class BookDisplay extends Component {

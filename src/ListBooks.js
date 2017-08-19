@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import BookDisplay from './BookDisplay'
-import BookModal from './BookModal'
 import LeftNav from './LeftNav'
 import Filter from './BookFilter'
 
@@ -18,9 +17,7 @@ class ListBooks extends Component {
 		})
 	}
 
-
 	render(){
-
 		return (
       <div className="list-books">
         <LeftNav />
